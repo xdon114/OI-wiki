@@ -62,7 +62,7 @@ AA 树的每个节点维护一个 **level** 字段，类似红黑树的每个节
     \begin{array}{ll}
     1 & \textbf{function } \text{split}(\text{root}) \\
     2 & \qquad \textbf{if } \text{root}\rightarrow\text{right}\rightarrow\text{right}\rightarrow\text{level} == \text{root}\rightarrow\text{level} \\
-    3 & \qquad\qquad \text{rotate\_left}(\text{root}) \\
+    3 & \qquad\qquad \text{rotate_left}(\text{root}) \\
     4 & \textbf{end function}
     \end{array}
     $$
@@ -83,7 +83,7 @@ AA 树的每个节点维护一个 **level** 字段，类似红黑树的每个节
     \begin{array}{ll}
     1 & \textbf{function } \text{skew}(\text{root}) \\
     2 & \qquad \textbf{if } \text{root}\rightarrow\text{left}\rightarrow\text{level} == \text{root}\rightarrow\text{level} \\
-    3 & \qquad\qquad \text{rotate\_right}(\text{root}) \\
+    3 & \qquad\qquad \text{rotate_right}(\text{root}) \\
     4 & \textbf{end function}
     \end{array}
     $$
