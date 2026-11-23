@@ -60,9 +60,9 @@ $$
 
 ### 推论
 
-考虑求树括号序的递归算法，我们在回溯时拼接子树的括号序．在拼接的时候将字典序小的序列先拼接，并将最后的结果记为 $NAME$．
+考虑求树括号序的递归算法，我们在回溯时拼接子树的括号序．在拼接的时候将字典序小的序列先拼接，并将最后的结果记为 $\mathrm{name}$．
 
-将以节点 $r$ 为根的子树的 $NAME$ 作为节点 $r$ 的 $NAME$，记为 $NAME(r)$，那么对于有根树 $T_1(V_1,E_1,r_1)$ 和 $T_2(V_2,E_2,r_2)$，如果 $NAME(r_1)=NAME(r_2)$，那么 $T_1$ 和 $T_2$ 同构．
+将以节点 $r$ 为根的子树的 $\mathrm{name}$ 作为节点 $r$ 的 $\mathrm{name}$，记为 $\mathrm{name}(r)$，那么对于有根树 $T_1(V_1,E_1,r_1)$ 和 $T_2(V_2,E_2,r_2)$，如果 $\mathrm{name}(r_1)=\mathrm{name}(r_2)$，那么 $T_1$ 和 $T_2$ 同构．
 
 ### 命名算法
 
@@ -73,13 +73,13 @@ $$
     2 & \textbf{Output. } \text{The name of rooted tree }T\\
     3 & \text{ASSIGN-NAME(u)}\\
     4 & \qquad \text{if  } u \text{  is a leaf}\\
-    5 & \qquad \qquad \text{NAME(} u \text{) = (0)}\\
+    5 & \qquad \qquad \text{name(} u \text{) = (0)}\\
     6 & \qquad \text{else }\\
     7 & \qquad \qquad \text{for all children } v \text{ of } u\\
     8 & \qquad \qquad \qquad \text{ASSIGN-NAME(}v\text{)}\\
     9 & \qquad \text{sort the names of the children of }u\\
     10 & \qquad \text{concatenate the names of all children of }u\text{ to temp}\\
-    11 & \qquad \text{NAME(} u \text{) = (temp)}
+    11 & \qquad \text{name(} u \text{) = (temp)}
     \end{array}
     $$
 
@@ -93,7 +93,7 @@ $$
     3 & \text{AHU}(T_1(V_1,E_1,r_1), T_2(V_2,E_2,r_2))\\
     4 & \qquad \text{ASSIGN-NAME(}r_1\text{)}\\
     5 & \qquad \text{ASSIGN-NAME(}r_2\text{)}\\
-    6 & \qquad \text{if  NAME}(r_1) = \text{NAME}(r_2)\\
+    6 & \qquad \text{if  name}(r_1) = \text{name}(r_2)\\
     7 & \qquad \qquad \text{return true}\\
     8 & \qquad \text{else}\\
     9 & \qquad \qquad \text{return false}
@@ -106,27 +106,27 @@ $$
 
 ## 优化的 AHU 算法
 
-朴素的 AHU 算法的缺点是树的 $NAME$ 的长度可能会过长，我们可以针对这一点做一些优化．
+朴素的 AHU 算法的缺点是树的 $\mathrm{name}$ 的长度可能会过长，我们可以针对这一点做一些优化．
 
 ### 原理 1
 
-对树进行层次划分，第 $i$ 层的节点到根的最短距离为 $i$．位于第 $i$ 层的节点的 $NAME$ 可以 **只** 由位于第 $i+1$ 层的节点的 $NAME$ 拼接得到．
+对树进行层次划分，第 $i$ 层的节点到根的最短距离为 $i$．位于第 $i$ 层的节点的 $\mathrm{name}$ 可以 **只** 由位于第 $i+1$ 层的节点的 $\mathrm{name}$ 拼接得到．
 
 ### 原理 2
 
-在同一层内，节点的 $NAME$ 可以由其在层内的排名唯一标识．
+在同一层内，节点的 $\mathrm{name}$ 可以由其在层内的排名唯一标识．
 
-**注意**，这里的排名是对两棵树而言的，假设节点 $u$ 位于第 $i$ 层，那么节点 $u$ 的排名等于所有 $T_1$ 和 $T_2$ 第 $i$ 层的节点中 $NAME$ 比 $NAME(u)$ 小的节点的个数．
+**注意**，这里的排名是对两棵树而言的，假设节点 $u$ 位于第 $i$ 层，那么节点 $u$ 的排名等于所有 $T_1$ 和 $T_2$ 第 $i$ 层的节点中 $\mathrm{name}$ 比 $\mathrm{name}(u)$ 小的节点的个数．
 
 ### 推论
 
-我们可以将节点原来的 $NAME$ 用其在层内的排名代替，然后把原来拼接节点 $NAME$ 用向数组加入元素代替．
+我们可以将节点原来的 $\mathrm{name}$ 用其在层内的排名代替，然后把原来拼接节点 $\mathrm{name}$ 用向数组加入元素代替．
 
 这样用整数和数组来代替字符串，既不会影响算法的正确性，又大大降低了算法的复杂度．
 
 ### 复杂度证明
 
-首先注意到第 $i$ 层由拼接得到的 $NAME$ 的总长度为第 $i$ 层点的子结点数之和，即第 $i+1$ 层的总点数，以下用 $L_i$ 表示．算法的下一步会将这些 $NAME$ 看成字符串（数组）并排序，然后将它们替换为其在层内的排名（即重新映射为一个数）．以下引理表明了对总长为 $L$ 的 $m$ 个字符串排序的复杂度：
+首先注意到第 $i$ 层由拼接得到的 $\mathrm{name}$ 的总长度为第 $i$ 层点的子结点数之和，即第 $i+1$ 层的总点数，以下用 $L_i$ 表示．算法的下一步会将这些 $\mathrm{name}$ 看成字符串（数组）并排序，然后将它们替换为其在层内的排名（即重新映射为一个数）．以下引理表明了对总长为 $L$ 的 $m$ 个字符串排序的复杂度：
 
 1.  我们可以使用基数排序在 $O(L+|\Sigma|)$ 的时间内完成排序，其中 $|\Sigma|$ 为字符集的大小．（有一些实现细节，参见参考资料）
 2.  我们可以使用快速排序在 $O(L \log m)$ 的时间内完成排序．证明的大致思路为快排递归树的高度为 $O(\log m)$，且暴力比较长度为 $\ell_1$ 和 $\ell_2$ 的两个字符串的复杂度为 $O(\min\{\ell_1,\ell_2\})$．
